@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% block title %}
+	<title>Sub Category</title>
+{% endblock %}
+
+
+{% load humanize %}
+
+
+<style type="text/css">
+	.product_container{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+		height: auto;
+		right: 0;
+	}
+	.product_container .product{
+		width: 90%;
+		height: auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.product_container .product .colomn{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 25%;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	.product_container .product .image{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	
+	.product .image .image_box{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 200px;
+		height: 300px;
+	}
+	.product .image .image_box img{
+		width: 100%;
+		height: auto;
+	}
+	.product_container .product .text{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin-top: 20px;
+		line-height: 40px;
+	}
+	.product_container .product .text .price{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		font-size: 20px;
+	}
+	.product_container .product .text .price .discount{
+		color: red;
+		float: right;
+		border-radius: 30px;
+		height: 20px;
+		padding-left: 10px;
+		padding-right: 10px;
+		display: flex;
+		align-items: center;
+		background-color: red;
+		color: white;
+		font-size: 15px;
+	}
+	.product_container .product .text .price .price{
+		margin-right: 50px;
+		font-family: Segoe Print;
+	}
+	.product_container .product .text .old_p{
+		width: 80px;
+		height: 14px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 130px;
+	}
+	.product_container .product .text .old_p .price_old{
+		float: left;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 20px;
+		text-decoration: line-through;
+		font-weight: 500;
+	}
+	.product_container .product .text .title{
+		font-size: 20px;
+		font-family: Microsoft Yi Baiti;
+	}
+	.product_container .product .text .price .discount_box{
+		width: 70px;
+		height: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+</style>
+
+<div class="product_container">
+	<div class="product">
+{% for sub_cat in sub_cats %}
+	{% for item in sub_category_products %}
+		{% if item.subcategory == sub_cat %}
+			{% if item.number_product == 0 %}
+			<p></p>
+			{% else %}
+				<div class="colomn">
+			<div class="image">
+				<div class="image_box">
+					{% if item.image %}
+					<a href="{% url 'product-detail' item.slug %}"><img src="{{item.image.url}}" class="image_size"></a>
+					{% else %}
+					<a href=""><img src="" class="image_size"></a>
+					{% endif %}
+				</div>
+			</div>
+			<div class="text">
+				<p class="title">{{ item.product_title }}</p>
+				<div class="price">
+					<p class="price">{{ item.price|floatformat:0|intcomma }}</p>
+					<div class="discount_box">
+						{% if item.discount_price == 0 %}
+						<p></p>
+						{% elif  item.discount_price == null %}
+						<p></p>
+						{% else %}
+						<p class="discount">{{ item.discount_price|floatformat:0|intcomma }}</p>
+						{% endif %}
+					</div>
+				</div>
+				<div class="old_p">
+					{% if item.discount_price == 0 %}
+						<p></p>
+					{% elif item.discount_price == null %}
+						<p></p>
+					{% else %}
+						<p class="price_old">{{ item.price|floatformat:0|intcomma }}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+</div>
+</div>
+{% endblock content %}

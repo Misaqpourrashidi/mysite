@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% block title %}
+	<title>Delete Page</title>
+{% endblock %}
+
+{% load static %}
+
+
+<style type="text/css">
+	.container_product_delete{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		height: 500px;
+		text-align: center;
+	}
+	.container_product_delete .input h2{
+		padding: 20px;
+	}
+	.container_product_delete .input button{
+		margin-top: 20px;
+		padding: 20px;
+		padding-left: 30px;
+		padding-right: 30px;
+		border-radius: 10px;
+		font-size: 30px;
+		cursor: pointer;
+	}
+	.container_product_delete .input button:hover{
+		background: red;
+		color: #fff;
+	}
+</style>
+
+
+<div class="container_product_delete">
+	<form method="POST">
+		{% csrf_token %}
+		<div class="input">
+			<h2>You Trying To Delete Product "{{product.product_title}}"</h2>
+			<h2>Are You Sure ?</h2>
+			<button type="submit">Delete</button>
+		</div>
+	</form>
+</div>
+
+
+
+{% endblock content %}

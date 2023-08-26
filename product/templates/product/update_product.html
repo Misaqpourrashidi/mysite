@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% block title %}
+	<title>Update Page</title>
+{% endblock %}
+
+{% load static %}
+
+<style type="text/css">
+	.update_style{
+		padding: 20px;
+	}
+	.container_product_update{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.container_product_update .description{
+		padding: 10px;
+	}
+		.errors{
+		color: red;
+	}
+	.help_text{
+		color: green;
+	}
+
+	.body{
+		display: flex;
+	  	justify-content: center;
+	  	align-items: center;
+	  	min-height: 70vh;
+	  	flex-direction: column;
+	}
+	.input-group{
+		position: relative;
+		margin: 20px 0;
+	}
+	.input-group label{
+	  position: absolute;
+	  top: 50%;
+	  left: 5px;
+	  transform: translateY(-50%);
+	  font-size: 16px;
+	  color: black;
+	  padding: 0 5px;
+	  pointer-events: none;
+	  transition: .3s;
+	}
+	.input-group input{
+	  width: 320px;
+	  height: 40px;
+	  font-size: 16px;
+	  color: black;
+	  padding: 0 10px;
+	  background: transparent;
+	  border: 1.2px solid #00CED1;
+	  outline: none;
+	  border-radius: 5px;
+	}
+	.input-group input:focus~label,
+	.input-group input:valid~label{
+	  top: 0;
+	  font-size: 12px;
+	  background: #fff;
+
+	}
+	.input-group input:focus{
+		border: 1px solid #6495ED;
+	}
+
+	.input-group textarea{
+	  width: 320px;
+	  height: 40px;
+	  font-size: 16px;
+	  color: black;
+	  padding: 0 10px;
+	  background: transparent;
+	  border: 1.2px solid #00CED1;
+	  outline: none;
+	  border-radius: 5px;
+	}
+	.input-group textarea:focus~label,
+	.input-group textarea:valid~label{
+	  top: 0;
+	  font-size: 12px;
+	  background: #fff;
+
+	}
+	.input-group textarea:focus{
+		border: 1px solid #6495ED;
+	}
+
+	.input-group select{
+	  width: 320px;
+	  height: 40px;
+	  font-size: 16px;
+	  color: black;
+	  padding: 0 10px;
+	  background: transparent;
+	  border: 1.2px solid #00CED1;
+	  outline: none;
+	  border-radius: 5px;
+	}
+	.input-group select:focus~label,
+	.input-group select:valid~label{
+	  top: 0;
+	  font-size: 12px;
+	  background: #fff;
+
+	}
+	.input-group select:focus{
+		border: 1px solid #6495ED;
+	}
+
+	.container_product_update button{
+		margin-top: 20px;
+		border: 1px solid black;
+		width: 100%;
+		padding: 10px;
+		background: transparent;
+		color: black;
+		border: 1px solid black;
+		border-radius: 5px;
+	}
+	.container_product_update button:hover{
+		color: #1E90FF;
+		border: 1px solid green;
+	}
+
+</style>
+<div class="container_product_update">
+<div class="form-group">
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+	
+
+			<div class="input-group">
+			    <input class="update_style" type="text" name="title" value="{{form.initial.title}}">
+			    <label for="">Title</label>
+		  	</div>
+			
+			<div class="input-group">
+			    <input class="update_style" type="text" name="product_title" value="{{form.initial.product_title}}">
+			    <label for="">Product Title</label>
+		  	</div>
+			<div class="input-group">
+				<textarea class="description" name="description" rows="10" cols="50">{{form.initial.description}}</textarea>
+				<label for="">Description</label>
+		  	</div>
+			
+		  	<div class="input-group">
+			    <input class="update_style" type="number" name="price" value="{{form.initial.price}}">
+			    <label for="">Price</label>
+		  	</div>
+
+			<div class="input-group">
+			    <input class="update_style" type="number" name="discount_price" value="{{form.initial.discount_price}}">
+			    <label for="">Discount Price</label>
+		  	</div>
+
+		  	<div class="input-group">
+			  	<select name="category" class="update_style">		  		
+			  		<option {% for cat in form.category %}{{cat}}{% endfor %}></option>
+			  	</select>
+			  	<label for="">Category</label>
+			</div>
+
+			<div class="input-group">
+			  	<select name="subcategory" class="update_style">	
+			  		<option {% for subcat in form.subcategory %}{{subcat}}
+			  		{% endfor %}>  			
+			  		</option>
+			  	</select>
+			  	<label for="">Subcategory</label>
+			</div>
+
+			<div>
+				{{form.image}}
+			</div>
+
+			<div class="input-group">
+			    <input class="update_style" type="number" name="number_product" value="{{form.initial.number_product}}">
+			    <label for="">Number Product</label>
+		  	</div>
+
+
+		<button type="submit" class="btn btn-warning">Update</button>
+		
+	</form>
+</div>
+</div>
+
+{% endblock content %}
+
+

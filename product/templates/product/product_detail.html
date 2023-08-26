@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% block title %}
+		{% for product in product %}
+	<title>{{product.title}}</title>
+		{% endfor %}
+{% endblock %}
+
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
+</head>
+
+<style type="text/css">
+	.container_product_detail{
+		padding-bottom: 100px;
+	}
+</style>
+<body>
+
+	<div id="hide_post_form" class="hide_post_form">
+		<form id="post_form" method="post" action="" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="post_form">
+				<h2>You need to Select image From Your PC</h2>
+				{{imageform.image}}
+				<div class="input"><input type="submit" name="submit" value="Confirm"></div>
+			</div>
+		</form>
+	</div>
+	
+{% if user.is_superuser %}
+	<div class="side_bar">
+		<div id="image_form" onmouseover="image_form_show()" onmouseout="image_form_hide()" class="image_form">
+			<i class="bi bi-arrow-bar-left"></i>
+			<a id="image_form_a">Add Image</a>	
+		</div>
+		<div id="update_product" onmouseover="update_product_show()" onmouseout="update_product_hide()" class="update_product">
+			<i class="bi bi-arrow-bar-left"></i>
+			{% for product in product %}
+			<a id="update_product_a" href="{% url 'update_view' product.slug %}">Update Product</a>		
+			{% endfor %}
+		</div>
+		<div id="delete_product" onmouseover="delete_product_show()" onmouseout="delete_product_hide()" class="delete_product">
+			<i class="bi bi-arrow-bar-left"></i>
+			{% for product in product %}
+			<a id="delete_product_a" href="{% url 'delete_view' product.slug %}">Delete Product</a>
+			{% endfor %}
+		</div>
+	</div>
+{% endif %}
+
+<div class="container_product_detail">
+	<div class="images">
+	{% for images in images %}
+		<div class="child_images">
+			<img src="{{images.image.url}}">
+			<div class="delete_image">
+				{% if user.is_superuser %}
+				{% for product in product %}
+					<a href="{% url 'deleteimageform' images.pk product.slug %}"><i class="bi bi-trash"></i></a>
+				{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+	<div class="product_content">
+		{% for product in product %}
+		<div class="product_content_child">
+			<h4 class="product_title">{{product.product_title}}</h4>
+			
+			<h4 class="number_product">Left in the Basket: {{product.number_product|floatformat:0}}</h4>
+		</div>
+			<h4 class="description">{{product.description}}</h4>
+		{% endfor %}
+	</div>
+	<div class="product_detail_checkout">
+	{% for product in product %}
+	<div class="product_discount">
+		<h4 class="price">
+			{% if product.discount_price == 0 %}
+				<p></p>
+			{% elif  product.discount_price == null %}
+				<p></p>
+			{% else %}
+				<p class="price_old">{{ product.price|floatformat:0|intcomma }}</p>
+			{% endif %}
+		</h4>
+		<h4 class="discount_price">
+			{% if product.discount_price == 0 %}
+				<p></p>
+				{% elif  product.discount_price == null %}
+				<p></p>
+				{% else %}
+				<p class="discount">{{ product.discount_price|floatformat:0|intcomma }}</p>
+			{% endif %}
+		</h4>
+	</div>
+		<div class="old_p">
+			<p class="price">$ {{ product.price|floatformat:0|intcomma }}</p>
+		</div>
+		{% if product.number_product == 0 %}
+		<a class="product_detail_checkout_buy">This item has been closed</a>
+		{% else %}
+		<form method="post">
+			<button type="submit" class="submit_buy">
+				<a href="{{object.get_add_to_cart}}" class="product_detail_checkout_buy">Buy Now</a>
+			</button>
+		</form>
+		{% endif %}
+	</div>
+	{% endfor %}
+</div>
+
+
+</body>
+</html>
+<br><br><br><br><br>
+
+
+
+<script type="text/javascript">
+	const hidePostForm = document.getElementById("hide_post_form")
+	const imageForm = document.getElementById("image_form")
+
+	imageForm.addEventListener('click', function(){
+		hidePostForm.classList.toggle("show_post_form")
+	})
+</script>
+
+
+<script>
+	// image_form
+
+	function image_form_show(){
+	  const show = document.getElementById("image_form").style.cssText="padding-right: 10px;"
+	  const updateProductA = document.getElementById("image_form_a").style.cssText="display:block; padding-left:10px;"
+	}
+
+	function image_form_hide(){
+	  const hide = document.getElementById("image_form").style.cssText=""
+	 const updateProductA = document.getElementById("image_form_a").style.cssText="display:none;"
+	}
+
+	// update_product
+
+	function update_product_show(){
+	  const show = document.getElementById("update_product").style.cssText="padding-right: 10px;"
+	  const updateProductA = document.getElementById("update_product_a").style.cssText="display:block; padding-left:10px;"
+	}
+
+	function update_product_hide(){
+	  const hide = document.getElementById("update_product").style.cssText=""
+	 const updateProductA = document.getElementById("update_product_a").style.cssText="display:none;"
+	}
+
+	// delete_product
+
+	function delete_product_show(){
+	  const show = document.getElementById("delete_product").style.cssText="padding-right: 10px;"
+	  const updateProductA = document.getElementById("delete_product_a").style.cssText="display:block; padding-left:10px;"
+	}
+
+	function delete_product_hide(){
+	  const hide = document.getElementById("delete_product").style.cssText=""
+	 const updateProductA = document.getElementById("delete_product_a").style.cssText="display:none;"
+	}
+</script>
+
+
+<script type="text/javascript">
+
+	const images = document.getElementsByClassName("child_images");
+
+	for (let i = 0; i < images.length; i++) {
+	  images[i].addEventListener("click", changeImage);
+	}
+
+	function changeImage(e) {
+	  const oldActive = document.getElementsByClassName("active");
+	  // depending on your usage you could also replace oldActive by images
+	  for (let i = 0; i < oldActive.length; i++) {
+	    oldActive[i].classList.remove("active");
+	  }
+	  e.currentTarget.classList.add("active");
+	}
+
+	window.onload (onload)
+	function onload(){
+		document.querySelectorAll(".child_images")[0].classList.add("active");
+	}
+</script>
+
+{% endblock content %}
