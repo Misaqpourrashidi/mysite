@@ -1,0 +1,91 @@
+
+
+<style type="text/css">
+		.cargo{
+		display: flex;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		padding-top: 20px;
+		padding-bottom: 20px;
+		width: 90%;
+	}
+	.cargo-all{
+		display: flex;
+		width: 80%;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0 auto;
+	}
+	.Packing{
+		display: flex;
+	}
+	.Packing i{
+		font-size: 60px;
+	}
+	.Packing h1{
+		font-size: 30px;
+		padding-left: 30px;
+		padding-top: 20px;
+	}
+	.Send-package{
+		display: flex;
+	}
+	.Send-package i{
+		font-size: 60px;
+	}
+	.Send-package h1{
+		font-size: 30px;
+		padding-top: 20px;
+		padding-left: 30px;
+	}
+	.Received{
+		display: flex;
+	}
+	.Received i{
+		font-size: 60px;
+	}
+	.Received h1{
+		font-size: 30px;
+		padding-top: 20px;
+		padding-left: 30px;
+	}
+	
+
+</style>
+
+
+
+
+<div class="cargo">
+		<div class="cargo-all">
+			<!-- Packing -->
+			<div class="Packing">
+				{% if order.ordered == True %}
+					<i style="color: #1E90FF;" class="bi bi-box-seam"></i>
+					<h1 style="color: green;">Packing</h1>
+				{% else %}
+				<i style="color: #1E90FF;" class="bi bi-box-seam"></i>
+					<h1>Packing</h1>
+				{% endif %}
+			</div>
+			<!-- Send package -->
+			<div class="Send-package">
+				{% if order.sent == True %}
+				<i style="color: #1E90FF;" class="bi bi-rocket-takeoff"></i>
+					<h1 style="color: green;">Send package</h1>
+				{% else %}
+				<i class="bi bi-rocket-takeoff"></i>
+					<h1>Send package</h1>
+				{% endif %}
+			</div>
+			<!-- Received -->
+			<div class="Received">
+				{% if order.received == True %}
+				<i style="color: #1E90FF;" class="bi bi-check2-all"></i>
+					<h1 style="color: green;">Received</h1>
+				{% else %}
+				<i class="bi bi-check2-all"></i>
+					<h1>Received</h1>
+				{% endif %}
+			</div>
+		</div>
+	</div>

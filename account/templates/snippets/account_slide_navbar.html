@@ -1,0 +1,45 @@
+{% url 'account' as account %}
+{% url 'product_view' as product_view %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<style type="text/css">
+	.slide_account_navbar{
+		position: absolute;
+		right: 0;
+		border-left: 1px solid rgba(0, 0, 0, 0.1);
+		height: 100%;
+		padding: 0;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.Product_View{
+		display: flex;
+		text-decoration: none;
+		color: black;
+		pointer-events: painted;
+	}
+	.Product_View i{
+		padding-right: 5px;
+	}
+	.slide-navbar-content{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		height: 60%;
+		padding-top: 40px;
+	}
+	.slide-navbar-content a:hover{
+		color: blue;
+	}
+	.active{
+		color: red;
+	}
+</style>
+
+<div class="slide_account_navbar">
+	<div class="slide-navbar-content">
+		<a class="{% if request.path == product_view %}active{% else %}color{% endif %} Product_View" href="{% url 'product_view' %}"><i class="bi bi-archive"></i>Product View</a>
+		<a class="{% if request.path == account %}active{% else %}color{% endif %} Product_View" href="{% url 'account' %}"><i class="bi bi-person"></i>Account</a>
+		<a class="Product_View" href="{% url 'home' %}"><i class="bi bi-house"></i> Home</a>
+	</div>
+</div>

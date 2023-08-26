@@ -1,0 +1,112 @@
+
+
+<style type="text/css">
+		.product_review_address{
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.product_review_address h2{
+		color: rgba(0, 0, 0, 0.6);
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+	.product_review_order{
+		width: 80%;
+		margin: 0 auto;
+	}
+	.product_review_order h2{
+		color: rgba(0, 0, 0, 0.6);
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+	.product_review_address .detail .child-family-name{
+		display: flex;
+		align-items: center;
+		padding-bottom: 10px;
+	}
+	.product_review_address .detail .child-family-name h3{
+		font-family: Gabriola;
+		font-size: 26px;
+	}
+	.product_review_address .detail .child-family-name span{
+		color: rgba(0, 0, 0, 0.7);
+		font-size: 20px;
+	}
+	.product_review_address .detail .child-family-name .f{
+		padding-right: 20px;
+	}
+	.product_review_address .detail .child-family-name .first_name{
+		text-transform: capitalize;
+		color: black;
+		letter-spacing: 3px;
+		font-size: 26px;
+		padding-left: 5px;
+	}
+	.product_review_address .detail .child-family-name .last_name{
+		text-transform: capitalize;
+		color: black;
+		letter-spacing: 3px;
+		font-size: 26px;
+		padding-left: 5px;
+	}
+	.product_review_address .detail .child-family-name .email{
+		color: black;
+		letter-spacing: 3px;
+		font-size: 26px;
+		padding-left: 5px;
+	}
+	.child-Street-Zip{
+		display: flex;
+		flex-direction: column;
+	}
+	.product_review_address .detail .child-Street-Zip h3{
+		font-family: Gabriola;
+		font-size: 26px;
+	}
+	.product_review_address .detail .child-Street-Zip .last_name{
+		text-transform: capitalize;
+		color: black;
+		letter-spacing: 3px;
+		font-size: 26px;
+		padding-left: 5px;
+	}
+	.child-Street-Zip span{
+		color: rgba(0, 0, 0, 0.7);
+		font-size: 20px;
+	}
+	.border_bottom{
+		width: 60%;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		padding-top: 20px;
+	}
+</style>
+
+
+
+
+	<div class="product_review_address">
+		<h2>Address</h2>
+		<div class="detail">
+			<div class="child-family-name">
+				<h3 class="f"><span>First Name: </span> <span class="first_name">{{order.address.first_name}}</span></h3>
+				<h3><span>Last Name: </span> <span class="last_name"> {{order.address.last_name}}</span></h3>
+			</div>
+			<div class="child-family-name">
+				<h3 class="f"><span>Phone Number: </span> <span class="first_name">{{order.address.user.phone_number}}</span></h3>
+				{% if order.address.user.email %}
+				<h3><span>Email: </span> <span class="email">{{order.address.user.email}}</span></h3>
+				{% else %}
+				{{empty}}
+				{% endif %}
+			</div>
+			<div class="child-Street-Zip">
+				<h3><span>Street Address: </span><span class="last_name">
+				<!-- {{form.initial.state}} - {{form.initial.state}} | -->
+				{{order.address.user.street_address}}</span></h3>
+					
+				<h3><span>Zip: </span><span class="last_name">{{order.address.user.zip}}</span></h3>
+			</div>
+		</div>
+		<div class="border_bottom"></div>
+	</div>

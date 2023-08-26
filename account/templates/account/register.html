@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% block title %}
+	<title>Register</title>
+{% endblock title %}
+
+<style type="text/css">
+	.errors{
+		color: red;
+	}
+	.help_text{
+		color: green;
+	}
+
+	.body{
+		display: flex;
+	  	justify-content: center;
+	  	align-items: center;
+	  	min-height: 70vh;
+	  	flex-direction: column;
+	  	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	  	width: 40%;
+	  	margin: 0 auto;
+	  	margin-top: 20px;
+	  	padding-top: 20px;
+	  	padding-bottom: 20px;
+	}
+	.input-group{
+		position: relative;
+		margin: 20px 0;
+	}
+	.input-group label{
+	  position: absolute;
+	  top: 50%;
+	  left: 5px;
+	  transform: translateY(-50%);
+	  font-size: 16px;
+	  color: black;
+	  padding: 0 5px;
+	  pointer-events: none;
+	  transition: .3s;
+	}
+	.input-group input{
+	  width: 320px;
+	  height: 40px;
+	  font-size: 16px;
+	  color: black;
+	  padding: 0 10px;
+	  background: transparent;
+	  border: 1.2px solid #00CED1;
+	  outline: none;
+	  border-radius: 5px;
+	}
+	.input-group input:focus~label,
+	.input-group input:valid~label{
+	  top: 0;
+	  font-size: 12px;
+	  background: #fff;
+
+	}
+	.input-group input:focus{
+		border: 1px solid #6495ED;
+	}
+	.signup{
+		font-size: 25px;
+		text-align: center;
+		font-family: "Hoefler Text", sans-serif;
+	}
+	.submit{
+		padding-left: 145px;
+		padding-right: 145px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		background: none;
+		color: black;
+		border: 1px solid black;
+		border-radius: 5px;
+	}
+	.submit:hover{
+		color: #1E90FF;
+		border: 1px solid #1E90FF;
+	}
+/*	.img{
+		width: 10%;
+		border-radius: 50%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}*/
+</style>
+
+<div class="body">
+<form  method="post">
+    {% csrf_token %}		
+
+
+    <h1 class="signup">Create you'r free account</h1>
+
+    <div class="input-group">
+	    <input type="phone" name="phone_number" required>
+	    <label for="">Phone Number</label>
+  	</div>
+
+    <div class="input-group">
+	    <input type="password" name="password1" required>
+	    <label for="">Password</label>
+  	</div>
+
+    <!-- {% for field in registeration_form %}
+		<p class="help_text">{{field.help_text}}</p>
+	{% endfor %} -->
+
+    <div class="input-group">
+	    <input type="password" name="password2" required>
+	    <label for="">Confirm Password</label>
+  	</div>
+    
+	{% for field in registeration_form %}
+		{% for error in field.errors %}
+			<p class="errors">{{error}}</p>
+		{% endfor %}
+	{% endfor %}
+    
+  <button class="submit" type="submit">Register</button>
+</form>
+</div>
+
+
+
+{% endblock content %}

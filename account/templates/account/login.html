@@ -1,0 +1,166 @@
+
+{% load static %}
+{% block title %}
+	<title>Login</title>
+{% endblock %}
+<style type="text/css">
+	#bg::after {
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  background: rgba(0, 0, 0, 0.6);
+	  z-index: -1;
+	}				
+	#bg{
+		background-image: url('{% static "images/wp977.jpg" %}');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 115%;
+	}
+	.login{
+		width: 20%;
+		text-align: center;
+		margin-top: 200px;
+		margin-left: 250px;
+		height: 150px;
+	}
+	input{
+		width: 80%;
+		border-radius: 5px;
+		padding: 10px;
+		background: none;
+		border: 1px solid #00FFFF;
+		margin: 5px;
+	}
+	input::placeholder{
+		color: #00FFFF;
+	}
+	.btn{
+		border-radius: 5px;
+		padding: 8px;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-top: 20px;
+		background: none;
+		text-decoration: none;
+		border: 1px solid white;
+		color: white;
+	}
+	.btn:hover{
+		color: #00FFFF;
+		border: 1px solid #00FFFF;
+	}
+	.login_page{
+		color: #00FFFF;
+		font-family: Book Antiqua, Calibri, Tahoma, Serif;
+	}
+	.errors{
+		color: red;
+	}
+	.help_text{
+		color: green;
+	}
+	.non_field_errors{
+		color: red;
+	}
+	@media only screen and (max-width: 1100px){
+		#bg{
+			background-image: url('{% static "images/login.jpg" %}');
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		.login{
+			width: 50%;
+			text-align: center;
+			margin-top: 200px;
+			margin-left: 250px;
+			height: 150px;
+		}
+	}
+	@media only screen and (max-width: 1000px){
+		#bg{
+			background-image: url('{% static "images/login.jpg" %}');
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+		.login{
+			width: 50%;
+			text-align: center;
+			margin-top: 200px;
+			margin-left: 125px;
+			height: 150px;
+		}
+	}
+	@media only screen and (max-width: 700px){
+		#bg{
+			background-image: url('{% static "images/login.jpg" %}');
+			background-repeat: no-repeat;
+			background-size: 130%;
+		}
+		.login{
+			width: 50%;
+			text-align: center;
+			margin-top: 200px;
+			margin-left: 125px;
+			height: 150px;
+		}
+	}
+	.not_login{
+		margin-top: 20px;
+		border-top: 1px solid pink;
+	}
+	.not_login .signup{
+		text-decoration: none;
+		color: #00FFFF;
+	}
+	.not_login .text_signup{
+		color: white;
+	}
+</style>
+<body id="bg">
+<div class="login">
+<form  method="post">
+    {% csrf_token %}
+    <h3 class="login_page">Login Page</h3>
+	    <div>
+	    	<span>
+	    		<input type="phone" name="phone_number" class="form-control" placeholder="Phone Number" required>
+	    	</span>
+	    </div>
+	    <div>
+	    	<span>
+	    		<input type="password" name="password" class="form-control" placeholder="Password" required>
+	    	</span>
+	    </div>
+	    
+
+	{% for field in login_form %}
+	
+		{% if field.help_text %}
+			<p class="help_text">{{field.help_text}}</p>
+		{% endif %}
+	{% endfor %}
+
+	{% for field in login_form %}
+		{% for error in field.errors %}
+			<p class="errors">{{error}}</p>
+		{% endfor %}
+	{% endfor %}
+
+	{% if login_form.non_field_errors %}
+		<p class="non_field_errors">{{login_form.non_field_errors}}</p>
+	{% endif %}
+    
+  <button type="submit" class="btn">Login</button>
+
+	<div class="not_login">
+	    <p class="text_signup">Don't have an Account : <a class="signup" href="{% url 'register' %}">Sign Up</a></p>
+	    <p class="text_signup">Forgot password: <a class="signup" href="{% url 'password_reset' %}">Reset Password</a></p>
+	</div>
+</form>
+</div>
+</body>
+

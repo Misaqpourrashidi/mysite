@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% block content %}
+{% block title %}
+	<title>Account</title>
+{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+<style type="text/css">
+	.errors{
+		color: red;
+	}
+	.help_text{
+		color: green;
+	}
+
+	.body{
+		display: flex;
+	  	justify-content: center;
+	  	align-items: center;
+	  	min-height: 70vh;
+	  	flex-direction: column;
+	  	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	  	width: 40%;
+	  	margin: 0 auto;
+	  	margin-top: 20px;
+	  	padding-top: 20px;
+	  	padding-bottom: 20px;
+	}
+	.input-group{
+		position: relative;
+		margin: 20px 0;
+	}
+	.input-group label{
+	  position: absolute;
+	  top: 50%;
+	  left: 5px;
+	  transform: translateY(-50%);
+	  font-size: 16px;
+	  color: black;
+	  padding: 0 5px;
+	  pointer-events: none;
+	  transition: .3s;
+	}
+	.input-group input{
+	  width: 320px;
+	  height: 40px;
+	  font-size: 16px;
+	  color: black;
+	  padding: 0 10px;
+	  background: transparent;
+	  border: 1.2px solid #00CED1;
+	  outline: none;
+	  border-radius: 5px;
+	}
+	.input-group input:focus~label,
+	.input-group input:valid~label{
+	  top: 0;
+	  font-size: 12px;
+	  background: #fff;
+
+	}
+	.input-group input:focus{
+		border: 1px solid #6495ED;
+	}
+	.signup{
+		font-size: 25px;
+		text-align: center;
+		font-family: "Hoefler Text", sans-serif;
+	}
+	.submit{
+		padding-left: 127px;
+		padding-right: 127px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		background: transparent;
+		color: black;
+		border: 1px solid black;
+		border-radius: 5px;
+	}
+	.submit:hover{
+		color: #1E90FF;
+		border: 1px solid #1E90FF;
+	}
+/*	.img{
+		width: 10%;
+		border-radius: 50%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}*/
+
+
+</style>
+</head>
+<body>
+
+{% include 'snippets/account_slide_navbar.html' %}
+
+<div class="body">
+<form  method="post">
+	 {% csrf_token %}
+	<h1 class="signup">Profile</h1>
+	<div class="input-group">
+	    <input type="phone" name="phone_number" value="{{account_form.initial.phone_number}}" required>
+	    <label for="">Phone Number</label>
+  	</div>
+
+  	<div class="input-group">
+	    <input type="text" name="first_name" value="{{account_form.initial.first_name}}" >
+	    <label for="">First Name</label>
+  	</div>
+
+  	<div class="input-group">
+	    <input type="text" name="last_name" value="{{account_form.initial.last_name}}" >
+	    <label for="">Last Name</label>
+  	</div>
+
+  	<div class="input-group">
+	    <input type="text" name="zip" value="{{account_form.initial.zip}}" >
+	    <label for="">Zip Code</label>
+  	</div>
+
+  	<div class="input-group">
+	    <input type="text" name="street_address" value="{{account_form.initial.street_address}}" >
+	    <label for="">Street Address</label>
+  	</div>
+
+
+
+  	<div class="input-group">
+	    <input type="text" name="username" value="{{account_form.initial.username}}" >
+	    <label for="">Username</label>
+  	</div>
+
+  	<div class="input-group">
+	    <input type="email" name="email" value="{{account_form.initial.email}}" >
+	    <label for="">Email</label>
+  	</div>
+
+
+
+	<button class="submit" type="submit">Change Profile</button>
+</form>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	
+</script>
+
+ 
+
+
+
+
+
+{% endblock content %}
+
+
+
