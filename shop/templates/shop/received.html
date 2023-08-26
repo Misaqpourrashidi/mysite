@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% block title %}
+	<title>Received</title>
+{% endblock %}
+
+
+<style type="text/css">
+	.sent-form{
+		display: flex; 
+		align-items: center;
+		width: 100%;
+		justify-content: center;
+		height: 500px;
+	}
+</style>
+
+<div class="sent-form">
+<form method="post">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button type="submit">Submit</button>
+</form>
+</div>
+
+
+{% endblock %}

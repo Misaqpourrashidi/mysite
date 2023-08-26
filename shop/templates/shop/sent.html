@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% block title %}
+	<title>Sent</title>
+{% endblock %}
+
+<style type="text/css">
+	.sent-form{
+		display: flex; 
+		align-items: center;
+		width: 100%;
+		justify-content: center;
+		height: 500px;
+	}
+</style>
+
+<div class="sent-form">
+<form method="post">
+	{% csrf_token %}
+	<label>{{form.ref_code.label}}</label>
+	<input type="" name="ref_code">
+
+	<button type="submit">Submit</button>
+</form>
+</div>
+
+
+{% endblock %}

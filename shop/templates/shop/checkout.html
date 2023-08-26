@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% block title %}
+	<title>Check Out</title>
+{% endblock %}
+
+{% load static %}
+{% load humanize %}
+
+<style type="text/css">
+	.input-date .Phone{
+		top: -10px;
+		font-size: 14px;
+	}
+
+
+	.wrapper-FL .input-date .Phone{
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		color: gray;
+		pointer-events: none;
+		transition: all 0.3s ease;
+	}
+
+	.flex_select_zip{
+		margin-left: 50px;
+		display: flex;
+	}
+	.input-ZCS{
+		margin-left: 50px;
+	}
+	.style_select{
+		height: 40px;
+		display: flex;
+		align-items: center;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin-top: 30px;
+		outline: none;
+	}
+</style>
+{% include 'snippets/css_checkout.html' %}
+
+<div class="container_checkout">
+	<form method="POST" id="checkout-form" data-cities-url="{% url 'ajax_load_cities' %}">
+		{% csrf_token %}
+		<div class="content_checkout">
+			<div class="input-name">
+				<div class="wrapper-FL">
+					<div class="input-date">
+						<input type="text" name="first_name" value="{{account_form.initial.first_name}}" required>
+						<label class="all">First Name</label>
+					</div>
+				</div>
+				<div class="wrapper-FL">
+					<div class="input-date">
+						<input type="text" name="last_name" value="{{account_form.initial.last_name}}" required>
+						<label class="all">Last Name</label>
+					</div>
+				</div>
+			</div>
+			<div class="input-name">
+				<div class="wrapper-FL">
+					<div class="input-date">
+						<input type="text" name="phone_number" value="{{account_form.initial.phone_number}}" readonly required>
+						<label class="Phone">Phone Number</label>
+						( if wanna change number
+						<a href="{% url 'update_checkout' %}"> Click</a> )
+					</div>
+				</div>
+				<div class="wrapper-FL">
+					<div class="input-date">
+						<input type="text" name="email" value="{{account_form.initial.email}}" required>
+						<label class="all">Email</label>
+					</div>
+				</div>
+			</div>
+				<div class="wrapper_large">
+					<div class="input-date">
+						<input type="text" name="street_address" value="{{account_form.initial.street_address}}" required>
+						<label class="all" class="all">Adress</label>
+					</div>
+				</div>
+
+			<div class="flex_select_zip">
+
+	
+				<select class="style_select" name="state" id="id_state" required>
+					<option {% for state in form1.state %}{{state}}{% endfor %}></option>
+				</select>
+
+				<select class="style_select" name="city" id="id_city" required>
+					<option {% for city in form1.city %}{{city}}{% endfor %}></option>
+				</select>
+
+
+				<div class="input-ZCS">
+					<div class="wrapper-small">
+						<div class="input-date">
+							<input type="text" name="zip" value="{{account_form.initial.zip}}" required>
+							<label class="all">Zep Code</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="payment-option">
+				<h3>Pament Options</h3>
+				{% for value, name in account_form.fields.payment_option.choices %}
+					<div class="payment-option-flex">
+						<input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input"  required>
+						<label class="custom-control-label" for="{{ name }}">{{ name }}</label>
+					</div>
+				{% endfor %}
+			</div>
+			
+			<div class="payment-checkout">
+				<button class="btn-checkout" type="submit"> Payment </button>
+			</div>
+		</div>
+	</form>
+
+	<div class="order-checkout">
+	<h4 class="your-cart">
+        <span class="cart">Your cart</span>
+        <span class="badge">{{order.items.count}}</span>
+    </h4>
+	{% for order_item in order.items.all %}	
+		<div class="item-checkout">
+			<h3>{{order_item.item.title}} :</h3>
+			<h2>${{order_item.get_amount_saved|floatformat:0|intcomma}}</h3>
+		</div>	
+	{% endfor %}
+		<div class="total">
+			<h3>Total :</h3>
+			<h2>${{order.get_total|floatformat:0|intcomma}}</h2>
+		</div>
+	</div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_state").change(function () {
+      var url = $("#checkout-form").attr("data-cities-url");  // get the url of the `load_cities` view
+      var stateId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'state': stateId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+{% endblock %}

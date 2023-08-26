@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% block title %}
+	<title>Payment</title>
+{% endblock %}
+
+{% load static %}
+{% load humanize %}
+
+
+<form method="post">
+	{% csrf_token %}
+	<button type="submit">Payment</button>
+	
+</form>
+
+
+
+{% endblock %}
