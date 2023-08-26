@@ -1,0 +1,203 @@
+
+	.container_product_detail{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: auto;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		margin-top: 100px;
+	}
+	.container_product_detail .images{
+		display: flex;
+		flex-direction: column;
+		width: 450px;
+		height: auto;
+		
+	}
+	.container_product_detail .images .child_images{
+		width: 50px;
+		height: auto;
+	}
+	.container_product_detail img{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 0;
+		height: auto;
+		padding-left: 10px;
+		padding-bottom: 5px;
+		z-index: -2;
+	}
+	.container_product_detail .images .child_images .delete_image{
+		position: absolute;	
+		left: 10px;
+	
+	}
+	.container_product_detail .images .child_images .delete_image i{
+		color: red;
+		font-size: 20px;
+	}
+	.active img{
+		display: flex;
+		width: 430%;
+		height: auto;
+	}
+	.active{
+		display: flex;
+		position: absolute;
+		left: 60px;
+	}
+	.container_product_detail .product_content{
+		width: 100%;
+		padding-top: 50px;
+	}
+
+	.product_content_child .product_title{
+		font-family: Bahnschrift SemiBold;
+		text-transform: capitalize;
+		padding-bottom: 10px;
+	}
+	.product_content .description{
+		font-family: Gabriola;
+		font-size: 20px;
+		padding-top: 50px;
+	}
+	.product_discount {
+		display: flex;
+	}
+	.product_discount .discount{
+		margin-left: 30px;
+		width: 40px;
+		text-align: center;
+		border-radius: 20px;
+		background: #F08080;
+		color: #FFFAF0;
+	}
+	 .price_old{
+		text-decoration: line-through;
+		word-break: normal;
+		padding-bottom: 20px;
+	}
+	.product_detail_checkout{
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+	}
+	.old_p .price{
+		font-size: 20px;
+		font-family: Hoefler Text;
+	}
+	.product_detail_checkout_buy{
+		text-align: center;
+		text-decoration: none;
+		color: #800080;
+		border-radius: 5px;
+		margin-top: 20px;
+		background: #87CEFA;
+		padding: 10px;
+	}
+
+	.side_bar .image_form {
+		position: absolute;
+		right: 0;
+		top: 80px;
+		transition: all 0.3s linear;
+		display: flex;	
+		cursor: pointer;
+	}
+
+
+	.side_bar .image_form a{
+		display: none;
+		transition: all 0.3s linear;
+		text-decoration: none;
+		color: green;
+	}
+
+	.side_bar .image_form i{
+		color: green;
+	}
+
+	.side_bar .update_product {
+		position: absolute;
+		right: 0;
+		top: 110px;
+		transition: all 0.3s linear;
+		display: flex;
+		cursor: pointer;
+	}
+
+	.side_bar .update_product a{
+		display: none;
+		transition: all 0.3s linear;
+		text-decoration: none;
+		color: green;
+	}
+	.side_bar .update_product i{
+		color: green;
+	}
+
+	.side_bar .delete_product {
+		position: absolute;
+		right: 0;
+		top: 140px;
+		transition: all 0.3s linear;
+		display: flex;
+		cursor: pointer;		
+	}
+
+	.side_bar .delete_product a{
+		display: none;
+		transition: all 0.3s linear;
+		text-decoration: none;
+		color: red;
+	}
+	.side_bar .delete_product i{
+		color: red;
+	}
+
+
+	#post_form{
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		margin: 0 auto;
+		height: 100%;
+		top: 40px;
+		background: rgba(0, 0, 0, 0.6);
+	}
+	.post_form{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 800px;
+		height: 50%;
+		z-index: 1;
+		background: #fff;
+		border-radius: 10px;
+	}
+	.post_form h2{
+		padding-bottom: 60px;
+	}
+	.hide_post_form{
+		visibility: hidden;
+	}
+	.show_post_form{
+		visibility: visible;
+	}
+	.post_form .input{
+		padding-top: 60px;
+	}
+	.post_form .input input{
+		background: none;
+		border-radius: 10px;
+		color: black;
+		padding: 10px;
+	}
