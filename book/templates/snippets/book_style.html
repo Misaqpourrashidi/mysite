@@ -1,0 +1,199 @@
+<style type="text/css">
+		section{
+		min-height: 100vh;
+		width: 100%;
+		display: flex;
+	}
+	.container{
+		width: 90%;
+		padding-top: 20px;
+		margin: 0 auto;
+	}
+	.profile-content .dr_name{
+		border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+		width: 82%;
+		padding-bottom: 20px;
+
+	}
+	
+	.profile-content .dr_name h1{
+		font-family: Arial Nova;
+		font-size: 35px;
+		letter-spacing: 10px;
+	}
+	
+	.professional_title{
+		width: 85%;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+		padding-bottom: 20px;
+		padding-top: 20px;
+	
+	}
+	.professional_title h1{
+		font-family: Microsoft Yi Baiti	;
+		font-size: 25px;
+		letter-spacing: 5px;
+	}
+	.dr_profile_image {
+		text-align: center;
+		clip-path: circle();
+		width: 15%;
+		float: right;
+		margin-top: -120px;
+	}
+	.dr_profile_image .dr_image img{
+		width: 100%;
+		clip-path: circle();
+	}
+	.dr_cv{
+		margin-top: 80px;
+	}
+	.dr_cv .split_flex{
+		display: flex;
+	}
+	.dr_cv .split_flex .first_column{
+		display: flex;
+		flex-direction: column;
+		width: 20%;
+		float: left;
+		padding-right: 60px;
+	}
+	.dr_cv .split_flex .first_column .first h1{
+		font-family: 'Westminster';
+		font-weight: 400;
+		letter-spacing: 5px;
+		font-size: 20px;
+		padding-bottom: 20px;
+	}
+	.dr_cv .split_flex .first_column .first h2{
+		padding-left: 29px;
+		font-family: 'Westminster';
+		font-weight: 400;
+		font-size: 16px;
+
+	}
+	.dr_cv .split_flex .first_column .second{
+		border-top: 1px solid rgba(0, 0, 0, 0.4);
+		margin-top: 20px;
+		padding-top: 30px;
+		padding-bottom: 10px;
+
+	}
+	.dr_cv .split_flex .first_column .third{
+		border-top: 1px solid rgba(0, 0, 0, 0.4);
+		margin-top: 20px;
+		padding-top: 10px;
+	}
+	.dr_cv .split_flex .first_column .second .phone .child {
+		display: inline-block;
+	}
+	.dr_cv .split_flex .first_column .second .phone .child h2 {
+		padding-left: 10px;
+		padding-bottom: 10px;
+		padding-top: 20px;
+	}
+	.dr_cv .split_flex .first_column .second .email .child {
+		display: inline-block;
+	}
+	.dr_cv .split_flex .first_column .second .email .child h2 {
+		padding-left: 10px;
+		padding-bottom: 10px;
+	}
+	.dr_cv .split_flex .first_column .second .address .child {
+		display: inline-block;
+	}
+	.dr_cv .split_flex .first_column .second .address .child h2 {
+		padding-left: 10px;
+		padding-bottom: 10px;
+	}
+	.dr_cv .split_flex .first_column .second .website .child {
+		display: inline-block;
+	}
+	.dr_cv .split_flex .first_column .second .website .child h2 {
+		padding-left: 10px;
+		padding-bottom: 10px;
+	}
+	.dr_cv .split_flex .first_column .second h1{
+		font-family: 'Westminster';
+		font-weight: 400;
+		letter-spacing: 5px;
+		font-size: 20px;
+	}
+	.dr_cv .split_flex .first_column .second h2{
+		font-family: 'Westminster';
+		font-weight: 400;
+		font-size: 16px;
+	}
+	.dr_cv .split_flex .first_column .third h1{
+		font-family: 'Westminster';
+		font-weight: 400;
+		letter-spacing: 5px;
+		font-size: 20px;
+		padding-bottom: 20px;
+	}
+	.dr_cv .split_flex .first_column .third h2{
+		padding-bottom: 50px;
+		padding-left: 29px;
+		font-family: 'Westminster';
+		font-weight: 400;
+		font-size: 15px;
+		line-height: 2.60em;
+	}
+	.dr_cv .split_flex .second_column{
+		border-left: 2px solid rgba(0, 0, 0, 0.4);
+		display: flex;
+		flex-direction: column;
+		width: 74%;
+		float: right;
+		padding-left: 15px;
+
+	}
+	.dr_cv .split_flex .second_column h1{
+		font-family: Westminster;
+		font-weight: 400;
+		letter-spacing: 5px;
+		font-size: 20px;
+
+	}
+	.dr_cv .split_flex .second_column h2{
+		font-family: 'Westminster';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 16px;
+		padding-top: 15px;
+		padding-left: 15px;
+		line-height: 1.85em;
+	}
+	.dr_cv .split_flex .second_column .first h1{
+		width: 16%;
+		padding-bottom: 15px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+	}
+	.dr_cv .split_flex .second_column .second {
+		border-top: 1px solid rgba(0, 0, 0, 0.4);
+		margin-top: 40px;
+		padding-top: 40px;
+		
+	}
+	.dr_cv .split_flex .second_column .second h1{
+		padding-bottom: 20px;
+
+	}
+	.dr_cv .split_flex .second_column .second h2{
+		padding-left: 15px;
+	}
+	.dr_cv .split_flex .second_column .third {
+		border-top: 1px solid rgba(0, 0, 0, 0.4);
+		margin-top: 40px;
+		padding-top: 40px;
+		padding-left: 15px;
+	}
+	.dr_cv .split_flex .second_column .third h1{
+		padding-bottom: 20px;
+		padding-left: 0;
+	}
+	.dr_cv .split_flex .second_column .third h2{
+		padding-left: 15px;
+	}
+
+</style>

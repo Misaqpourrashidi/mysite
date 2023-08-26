@@ -1,0 +1,337 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+{% block title %}
+	<title> DR {{book.first_name}} {{book.last_name}}</title>
+{% endblock %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+	<title></title>
+</head>
+<style type="text/css">
+
+	.comment_form{
+		display: flex;
+		flex-direction: column;
+		width: 60%;
+		margin: 0 auto;
+		border-radius: 3px;
+		padding: 10px;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+	}
+	input:focus{
+		outline: none;
+		border: 1px solid #00CED1;
+	}
+	textarea:focus{
+		outline: none;
+		border: 1px solid #00CED1;
+	}
+	.comment_label{
+		display: flex;
+		flex-direction: column;
+		width: 60%;
+		margin: 0 auto;
+		padding: 10px;
+	}
+	.comment_submit{
+		display: flex;
+		justify-content: center;
+		width: 40%;
+		margin: 0 auto;
+		background: none;
+		margin-top: 20px;
+		padding: 5px;
+		border-radius: 3px;
+		border: 1px solid rgba(0, 0, 0, 0.6);
+	}
+	.comment_submit:hover{
+		border: 1px solid #00CED1;
+	}
+	.comment{
+		display: flex;
+		flex-direction: column;
+		width: 70%;
+		margin: 0 auto;
+	}
+	.comment i{
+		font-size: 70px;
+		color: rgba(0, 0, 0, 0.3);
+	}
+	.comment h3{
+		color: rgba(0, 0, 0, 0.6);
+		font-family: Microsoft Uighur;
+		font-size: 30px;
+	}
+	.comment h3 span{
+		font-weight: bold;
+		color: black;
+		font-family: Microsoft PhagsPa;
+		font-size: 20px;
+	}
+	.reply{
+		display: flex;
+		flex-direction: column;
+		width: 60%;
+		margin: 0 auto;
+	}
+	.reply i{
+		font-size: 40px;
+		color: rgba(0, 0, 0, 0.3);
+	}
+	.reply h3{
+		color: rgba(0, 0, 0, 0.6);
+		font-family: Microsoft Uighur;
+		font-size: 28px;
+	}
+	.reply h3 span{
+		font-weight: bold;
+		color: black;
+		font-family: Microsoft PhagsPa;
+		font-size: 18px;
+	}
+	.reply_form{
+		display: flex;
+		flex-direction: column;
+		width: 30%;
+		margin: 0 auto;
+		border-radius: 3px;
+		padding: 10px;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+	}
+	.reply_submit{
+		display: flex;
+		justify-content: center;
+		width: 20%;
+		margin: 0 auto;
+		background: none;
+		margin-top: 20px;
+		padding: 5px;
+		border-radius: 3px;
+		border: 1px solid rgba(0, 0, 0, 0.6);
+	}
+	.reply_submit:hover{
+		border: 1px solid #00CED1;
+	}
+	.replyt_label{
+		display: flex;
+		flex-direction: column;
+		width: 30%;
+		margin: 0 auto;
+		padding: 10px;
+	}
+	.delete_comment_reply i{
+		font-size: 20px;
+		color: red;
+	}
+	.reply_to i{
+		font-size: 30px;
+		color: black;
+		cursor: pointer;
+	}
+	.reply_form_toggle{
+		display: none;
+	}
+	.show_reply_form{
+		display: block;
+	}
+
+</style>
+{% include 'snippets/book_style.html' %}
+<body>
+{% for book in book %}
+<section>
+	<div class="container">
+		<div class="profile-content">
+			<div class="dr_name">
+				<h1>{{book.first_name}}</h1>
+				<h1>{{book.last_name}}</h1>
+			</div>
+			<div class="dr_profile_image">
+				<div class="dr_image">
+					<img class="image" src="{{book.image.url}}">
+				</div>
+			</div>
+			<div class="professional_title">
+				<h1>PROFESSIONAL TITLE</h1>
+			</div>
+		</div>
+		<div class="dr_cv">
+			<div class="split_flex">
+				<div class="first_column">
+					<div class="first">
+						<h1>EPOINTMENT</h1>
+						<h2>{{book.january}}</h2>
+					</div>
+					<div class="second">
+						<h1>CONTATCT</h1>
+						<div class="phone">
+							<div class="child">
+								<i class="bi bi-telephone"></i>
+							</div>
+							<div class="child">
+								<h2>{{book.phone_number}}</h2>
+							</div>
+						</div>
+						<div class="email">
+							<div class="child">
+								<i class="bi bi-envelope"></i>
+							</div>
+							<div class="child">
+								<h2>{{book.email}}</h2> 
+							</div>
+						</div>
+						<div class="address">
+							<div class="child">
+								<i class="bi bi-geo-alt"></i>
+							</div>
+							<div class="child">
+								<h2>{{book.address}}</h2>
+							</div>
+						</div>
+						<div class="website">
+							<div class="child">
+								<i class="bi bi-globe2"></i>
+							</div>
+							<div class="child">
+								<h2>{{book.website}}</h2>
+							</div>
+						</div>
+					</div>
+					<div class="third">
+						<h1>SKIILS</h1>
+						<div class="child">
+							<h2>{{book.skills|safe}}</h2>
+						</div>
+					</div>
+				</div>
+				<div class="second_column">
+					<div class="first">
+						<h1>SUMMARY</h1>
+						<h2>{{book.summary|safe}}</h2>
+					</div>
+					<div class="second">
+						<h1>EXPERIENCE</h1>
+						<h2>{{book.experience|safe}}</h2>
+					</div>
+					<div class="third">
+						<h1>EDUCATION</h1>
+						<h2>{{book.education|safe}}</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endfor %}
+
+<!-- Comments -->
+
+<br><br>
+
+<form action="" method="POST" id="main_form">
+	{% csrf_token %}
+	<div>
+		<label class="comment_label">Name :</label>
+		<input class="comment_form" type="text" name="name" required>
+		<label class="comment_label">Content :</label>
+		<textarea class="comment_form" name="content" rows="10" cols="50" placeholder="Type Comment here ..." required></textarea>
+	    	
+	    <input class="comment_submit" type="submit" value="Comment">
+	</div>
+</form>
+
+<br><br>
+
+{% for comment in comments %}
+	<div class="comment">
+		
+		<i class="bi bi-person"></i>
+			<h3><span>User </span>| {{ comment.name }}
+
+				{% if user.is_superuser %}
+					{% for book in book %}
+						<a class="delete_comment_reply" href="{% url 'delete' comment.pk book.slug %}"><i class="bi bi-trash3-fill"></i></a></h3> 
+					{% endfor %}
+				{% endif %}
+
+			<h3>
+				{{ comment.content }} 
+				<a class="reply_to" id="{{comment.pk}}">
+					<i class="bi bi-reply-all "></i>
+				</a>
+			</h3>
+
+			<br>
+	</div>
+
+	{% for parent in parent %}
+	<div class="reply">
+		{% if parent.comment == comment %}
+		<i class="bi bi-person"></i>
+			
+			<h3><span>User </span>| {{ parent.name_reply }}
+
+				{% if user.is_superuser %}
+					{% for book in book %}
+						<a class="delete_comment_reply" href="{% url 'delete_reply' parent.pk book.slug %}"><i class="bi bi-trash3-fill"></i></a>
+					{% endfor %}
+				{% endif %}
+
+			</h3>
+			<h3>{{ parent.content_reply }}</h3> 
+		{% endif %}
+	</div>
+	{% endfor %}
+
+	<br><br>
+
+<div class="reply_form_toggle" id="{{comment.pk}}">
+	<form method="POST">
+		{% csrf_token %}
+		
+		<label class="replyt_label">Name :</label>
+		<input class="reply_form" type="text" name="name_reply" required>
+
+		<label class="replyt_label" >Content :</label>
+		<textarea class="reply_form" name="content_reply" rows="5" cols="20" placeholder="Type Reply here ..." required></textarea>
+
+		<input type="hidden" value="{{comment.pk}}" name="comment">
+
+		<input class="reply_submit" type="submit" value="Reply">
+		
+	</form>
+</div>
+{% endfor %}
+<br><br>
+
+
+
+<script type="text/javascript">
+	const rbi = document.querySelectorAll(".reply_to")
+	const reply = document.querySelectorAll(".reply_form_toggle")
+
+	rbi.forEach(function(r){	
+		r.addEventListener('click', function(e){
+			let ip = e.currentTarget.id
+			console.log(ip)
+			reply.forEach(function(e){
+				console.log(e.id)
+				if (e.id === ip){
+					e.classList.toggle("show_reply_form")
+				}
+			})
+			
+		})
+	})
+</script>
+
+
+
+{% endblock content %}
