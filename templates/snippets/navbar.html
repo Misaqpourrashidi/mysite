@@ -1,0 +1,60 @@
+<style type="text/css">
+
+</style>
+
+{% include 'snippets/css/navbar_css.html' %}
+<div class="menu_bar">
+	<h1 class="logo">Dr.<span>epointment</span></h1>
+	{% if request.user.is_authenticated %}
+	<ul>
+		<li><a class="color" href="#">Category <i class="bi bi-caret-down"></i></a>
+			<div class="dropdown_menu">
+				<ul>
+					{% for category in cat_menu %}
+					<li><a href="{% url 'categorys' category.slug %}">{{category.name}}</a>
+						{% for subcategory in sub_cat_menu %}
+						{% if subcategory.category == category %}
+						<div class="dropdown_menu-1">
+							<ul>
+								<li><a href="{% url 'sub_categorys' subcategory.slug %}">{{subcategory.name}}</a></li>	
+							</ul>
+						</div>
+						{% endif %}
+								{% endfor %}
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</li> 
+		<li><a class="{% if request.path == home %}active{% else %}color{% endif %}" href="{% url 'home' %}">Home</a></li>
+		
+		<li><a class="{% if request.path == account %}active{% else %}color{% endif %}" href="{% url 'account' %}">Account</a></li>
+		
+		<li><a class="{% if request.path == calendar %}active{% else %}color{% endif %}" href="{% url 'calendar' %}">Calendar</a></li> 
+
+		<li><a class="color" href="{% url 'logout' %}">Logout</a></li>
+		<li><a class="color" href="http://127.0.0.1:8000/admin/">Admin</a></li>
+	</ul>
+	{% else %}
+	<ul>
+		<li><a class="color" href="#">Category <i class="bi bi-caret-down"></i></a>
+			<div class="dropdown_menu">
+				<ul>
+					{% for category in cat_menu %}
+					<li><a href="{% url 'categorys' category.slug %}">{{category.name}}</a></li>
+					{% endfor %}
+					<li><a href="#">Item <i class="bi bi-caret-down"></i></a>
+						
+					</li>
+				</ul>
+			</div>
+		</li> 
+		<li><a class="{% if request.path == home %}active{% else %}color{% endif %}" href="{% url 'home' %}">Home</a></li>
+
+		<li><a class="{% if request.path == calendar %}active{% else %}color{% endif %}" href="{% url 'calendar' %}">Calendar</a></li>  
+	
+		<li><a class="{% if request.path == register %}active{% else %}color{% endif %}" href="{% url 'register' %}">Register</a></li> 
+		<li><a class="{% if request.path == login %}active{% else %}color{% endif %}" href="{% url 'login' %}">Login</a></li>
+	</ul>
+	{% endif %}
+</div>

@@ -1,0 +1,148 @@
+{% url 'sent' as sent %}
+{% url 'home' as home %}
+{% url 'account' as account %}
+{% url 'register' as register %}
+{% url 'login' as login %}
+
+{% url 'calendar' as calendar %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<script type="text/javascript">
+	
+	function getCookie(name) {
+	    let cookieValue = null;
+	    if (document.cookie && document.cookie !== '') {
+	        const cookies = document.cookie.split(';');
+	        for (let i = 0; i < cookies.length; i++) {
+	            const cookie = cookies[i].trim();
+	            // Does this cookie string begin with the name we want?
+	            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+	}
+
+
+	function uuidv4(){
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+			var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+			return v.toString(16)
+		})
+	}
+
+
+	let device = getCookie('device')
+
+	if (device == null || device == undefined){
+		device = uuidv4()
+	}
+
+	document.cookie = 'device=' + device + ";domain=;path=/"
+
+</script>
+
+
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+		word-break: break-all;
+	}
+</style>
+
+
+<style type="text/css">
+	.show{
+		width: 20%;
+		padding: 20px;
+		text-decoration: none;
+		border-radius: 10px;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 18px;
+		text-transform: capitalize;
+		margin-top: 20px;	
+	}
+	.alert-warning {
+		color: #FF8C00;
+		border: 1px solid #FF8C00;
+	}
+	.alert-info{
+		color: blue;
+		border: 1px solid blue;
+	}
+	.alert-error{
+		color: red;
+		border: 1px solid red;
+	}
+	.alert-success{
+		color: green;
+		border: 1px solid green;
+	}
+	.main{
+		min-height: 100vh;
+		height: 100%;
+	}
+
+
+</style>
+
+
+{% include 'snippets/nav_top.html' %}
+{% include 'snippets/navbar.html' %}
+
+<body class="main">
+
+{% if messages %}
+    {% for message in messages %}		
+		<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+			{{ message }}
+		  <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button> -->
+		</div>
+    {% endfor %}
+{% endif %}
+
+
+	{% block content %}
+
+	{% endblock content %}
+</body>
+
+{% include 'snippets/footer.html' %}
+
+</html>
+
+
+
+<script type="text/javascript">
+	const alert = document.querySelector(".alert-dismissible")
+	setTimeout(function(){
+		alert.textContent = ""
+		alert.classList.remove("alert-info", "show")
+	}, 3000)
+
+	setTimeout(function(){
+		alert.textContent = ""
+		alert.classList.remove("alert-warning", "show")
+	}, 3000)
+
+	setTimeout(function(){
+		alert.textContent = ""
+		alert.classList.remove("alert-error", "show")
+	}, 3000)
+
+	setTimeout(function(){
+		alert.textContent = ""
+		alert.classList.remove("alert-success", "show")
+	}, 3000)
+</script>

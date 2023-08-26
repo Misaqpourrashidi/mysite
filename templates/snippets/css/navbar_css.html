@@ -1,0 +1,75 @@
+<style type="text/css">
+		.navbar{
+		background: rgba(255, 255, 255, 0.38);
+		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+	}
+	
+	.active{
+		color: red;
+		text-decoration: none;
+	}
+
+	.menu_bar{
+		background: rgba(255, 255, 255, 0.38);
+		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.menu_bar .color{
+		text-decoration: none;
+		color: black;
+	}
+	.logo span{
+		color: darkblue;
+	}
+	.menu_bar ul{
+		list-style: none;
+		display: flex;
+	}
+	.menu_bar ul li a:hover{
+		color: darkblue;
+	}
+	.menu_bar ul li{
+		padding: 0 30px;
+	}
+	.menu_bar ul li:hover .dropdown_menu{
+		display: block;
+		position: absolute;
+		background: #00FFFF;
+	}
+	.dropdown_menu {
+		display: none;
+	}
+	.dropdown_menu ul{
+		display: block;
+		margin: 10px;
+	}
+	.dropdown_menu ul li{
+		padding: 10px;
+	}
+	.dropdown_menu ul li a:hover{
+		color: darkblue;
+	}
+	.dropdown_menu .bi{
+		float: right;
+		margin-left: 10px;
+		padding-top: 3px;
+	}
+	.dropdown_menu-1{
+		display: none;
+	}
+	.dropdown_menu ul li:hover .dropdown_menu-1 {
+		display: block;
+		position: absolute;
+		width: 100%;
+		left: 55px;
+		top: -30px;
+		background: #00FFFF;
+	}
+</style>
